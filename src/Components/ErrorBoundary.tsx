@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import * as Sentry from '@sentry/browser';
-
 export default class ErrorBoundary extends Component {
     state = {
         error: '',

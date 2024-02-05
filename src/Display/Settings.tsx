@@ -1,12 +1,13 @@
 import React from 'react';
-import {useMemo, useState} from 'react';
-import {PERSISTING_PREFERENCES_ACTIONS, usePersistingPreferences} from "./Context/Context.tsx";
+import {useState} from 'react';
 import {Button, TextInput} from "@mantine/core";
 import {
     IconLayoutGridAdd,
     IconTrash,
     IconDeviceFloppy,
 } from '@tabler/icons-react';
+
+import {PERSISTING_PREFERENCES_ACTIONS, usePersistingPreferences} from "../Context/PreferencesContext.tsx";
 
 const Settings = () => {
     const {preferences, dispatchPersistingPreferences} = usePersistingPreferences();

@@ -1,10 +1,11 @@
 import React from 'react';
-import { AppShell, Burger, Group, Skeleton } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import {Navbar} from "./Navbar.tsx";
 import {Outlet} from "react-router-dom";
+import { AppShell, Burger, Group } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 
-export function App() {
+import {Navbar} from "./Components/Navbar.tsx";
+
+export default ()=> {
     const [opened, { toggle,close }] = useDisclosure();
 
     return (

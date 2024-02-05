@@ -1,13 +1,16 @@
 import React from 'react';
+import classes from '../Styles/Navbar.module.css';
+
+import {Link, useLocation} from "react-router-dom";
 import { Tooltip, UnstyledButton, Stack, rem } from '@mantine/core';
 import {
     IconHome2,
     IconMushroom,
     IconSettings,
 } from '@tabler/icons-react';
-import classes from './Navbar.module.css';
-import {usePersistingPreferences} from "./Context/Context.tsx";
-import {Link, useLocation} from "react-router-dom";
+
+import {usePersistingPreferences} from "../Context/PreferencesContext.tsx";
+
 interface NavbarLinkProps {
     icon: typeof IconHome2|IconMushroom;
     path: string;
