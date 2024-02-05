@@ -9,9 +9,9 @@ export default () => {
     const {preferences} = usePersistingPreferences();
 
     return <Grid>
-        {preferences.hosts.map(({hostIp, name}) => <Grid.Col span={6}>
+        {preferences.hosts.map(({hostIp, name}) => <Grid.Col key={hostIp} span={6}>
             <>
-                <Link to={`/device/${name}`}>Detail</Link>
+                <Link to={`/presence/device/${name}`}>Detail</Link>
                 <Device displayMode={'compact'} deviceName={name} hostIp={hostIp}/>
             </>
             </Grid.Col>

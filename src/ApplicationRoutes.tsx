@@ -11,8 +11,9 @@ export default () => {
         <Routes>
             <Route path="/" element={<App/>}>
                 <Route index element={<Home/>}/>
-                <Route path="/device/:deviceName" element={<DeviceByParam/>}/>
-                <Route path="settings" element={<Settings/>}/>
+                <Route path="/presence/" element={<Home/>}/>
+                <Route path="/presence/device/:deviceName" element={<DeviceByParam/>}/>
+                <Route path="/presence/settings" element={<Settings/>}/>
             </Route>
         </Routes>
     </BrowserRouter>

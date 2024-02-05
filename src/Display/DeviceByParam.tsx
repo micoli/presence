@@ -10,7 +10,7 @@ export default () => {
     const hosts = preferences.hosts
         .filter(({name}) => params.deviceName === name)
         .map(({name, hostIp}) => <>
-                <Link to={`/`}>Home</Link>
+                <Link to={`/presence/`}>Home</Link>
                 <Device displayMode={'large'} deviceName={name} hostIp={hostIp}/>
             </>
         )

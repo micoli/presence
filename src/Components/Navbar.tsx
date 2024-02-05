@@ -43,7 +43,7 @@ export function Navbar({closeMenu}:{closeMenu:()=>void}) {
             path={`/device/${name}`}
             icon={IconMushroom}
             label={name}
-            active={pathname===`/device/${name}`}
+            active={pathname===`/presence/device/${name}`}
             onClick={closeMenu}
         />
     ));
@@ -55,7 +55,7 @@ export function Navbar({closeMenu}:{closeMenu:()=>void}) {
                     <NavbarLink
                         icon={IconHome2}
                         label="Home"
-                        path={"/"}
+                        path={"/presence/"}
                         active={pathname==='/'}
                         onClick={closeMenu}
                     />
@@ -67,8 +67,8 @@ export function Navbar({closeMenu}:{closeMenu:()=>void}) {
                 <NavbarLink
                     icon={IconSettings}
                     label="Settings"
-                    path={"/settings"}
-                    active={pathname==='/settings'}
+                    path={"/presence/settings"}
+                    active={pathname==='/presence/settings'}
                     onClick={closeMenu}
                 />
             </Stack>
