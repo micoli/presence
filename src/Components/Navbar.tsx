@@ -12,7 +12,7 @@ import {
 import {usePersistingPreferences} from "../Context/PreferencesContext.tsx";
 
 interface NavbarLinkProps {
-    icon: typeof IconHome2|IconMushroom;
+    icon: typeof IconHome2|typeof IconMushroom;
     path: string;
     label: string;
     active?: boolean;
@@ -34,10 +34,10 @@ function NavbarLink({ icon: Icon, label, active, path, onClick }: NavbarLinkProp
 
 export function Navbar({closeMenu}:{closeMenu:()=>void}) {
     const { pathname } = useLocation()
-    const {preferences, dispatchPersistingPreferences} = usePersistingPreferences();
+    const {preferences} = usePersistingPreferences();
 
 
-    const links = preferences.hosts.map(({path,name}, index) => (
+    const links = preferences.hosts.map(({name}) => (
         <NavbarLink
             key={name}
             path={`/device/${name}`}

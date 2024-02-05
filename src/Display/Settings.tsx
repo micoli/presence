@@ -43,7 +43,7 @@ const Settings = () => {
                             value={host.hostIp}
                             placeholder="192.168.X.X, 10.X.X.X"
                             onChange={(event) => {
-                                hosts[index].hostIp=event.currentTarget.value;
+                                hosts[index].hostIp = event.currentTarget.value;
                                 setHosts([...hosts])
                             }}
                         />
@@ -53,7 +53,7 @@ const Settings = () => {
                             value={host.name}
                             placeholder="bedroom1, kitchen"
                             onChange={(event) => {
-                                hosts[index].name=event.currentTarget.value;
+                                hosts[index].name = event.currentTarget.value;
                                 setHosts([...hosts])
                             }}
                         />
@@ -73,7 +73,7 @@ const Settings = () => {
                 console.log('save', hosts)
                 dispatchPersistingPreferences({type: PERSISTING_PREFERENCES_ACTIONS.SAVE_HOSTS, hosts})
             }
-        }><IconDeviceFloppy /></Button>
+        }><IconDeviceFloppy/></Button>
 
     </>
 }

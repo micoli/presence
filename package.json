@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/react-dom": "^18.2.18",
     "postcss": "^8.4.32",
     "postcss-preset-mantine": "^1.12.1",
     "postcss-simple-vars": "^7.0.1",
@@ -21,6 +22,7 @@
     "@mantinex/mantine-logo": "^1.0.1",
     "@tabler/icons-react": "^2.44.0",
     "event-source-polyfill": "^1.0.31",
+    "gh-pages": "^6.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1",

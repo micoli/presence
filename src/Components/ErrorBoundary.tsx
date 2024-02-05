@@ -1,69 +1,54 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {Component, ErrorInfo, ReactNode} from "react";
 
-export default class ErrorBoundary extends Component {
-    state = {
-        error: '',
-        eventId: '',
-        errorInfo: '',
+interface Props {
+    children?: ReactNode;
+}
+
+interface State {
+    hasError: boolean;
+    errorInfo: any;
+}
+
+class ErrorBoundary extends Component<Props, State> {
+    public state: State = {
         hasError: false,
+        errorInfo: null
     };
 
-    static getDerivedStateFromError(error) {
-        return {hasError: true, error};
+    public static getDerivedStateFromError(error: Error): State {
+        return {hasError: true,errorInfo: error};
     }
 
-    componentDidCatch(error, errorInfo) {
-        // eslint-disable-next-line no-console
-        console.log({error, errorInfo});
+    public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+        console.error("Uncaught error:", error, errorInfo);
     }
 
-    render() {
+    public render() {
         const {hasError, errorInfo} = this.state;
         if (hasError) {
             return (
                 <div className="card my-5">
                     <div className="card-header">
                         <p>
-                            An
-                            error
-                            has
-                            occurred in this
-                            component.
-                            {
-                                ' '
-                            }
+                            An error has occurred in this component.
                             <span
-                                style={
-                                    {
-                                        cursor: 'pointer', color:
-                                            '#0077FF'
-                                    }
-                                }
+                                style={{cursor: 'pointer', color: '#0077FF'}}
                                 onClick={() => {
                                     window.location.reload();
-                                }
-                                }
+                                }}
                             >
-            Reload
-            this
-            page
-            < /span>{' '}
-                        < /p>
-                    < /div>
+                            Reload this page
+                            </span>
+                        </p>
+                    </div>
 
-                    < div
-                        className="card-body">
+                    < div className="card-body">
                         <details className="error-details">
-                            <summary>Click
-                                for error details
-                            < /summary>
-                            {
-                                errorInfo && errorInfo.componentStack.toString()
-                            }
+                            <summary>Click for error details</summary>
+                            {errorInfo && errorInfo.componentStack.toString()}
                         </details>
-                    < /div>
-                < /div>
+                    </div>
+                </div>
             )
                 ;
         }
@@ -71,6 +56,4 @@ export default class ErrorBoundary extends Component {
     }
 }
 
-ErrorBoundary.propTypes = {
-    children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
-};
+export default ErrorBoundary;

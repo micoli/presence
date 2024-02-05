@@ -11,13 +11,13 @@ import {PersistingPreferencesProvider} from "./Context/PreferencesContext.tsx";
 
 
 ReactDOM
-    .createRoot(document.getElementById('root'))
+    .createRoot(document.getElementById('root')!)
     .render(
         <React.StrictMode>
             <ErrorBoundary>
                 <PersistingPreferencesProvider>
                     <MantineProvider>
-                        <ApplicationRoutes />
+                        <ApplicationRoutes/>
                     </MantineProvider>
                 </PersistingPreferencesProvider>
             </ErrorBoundary>

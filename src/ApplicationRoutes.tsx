@@ -9,9 +9,9 @@ import DeviceByParam from "./Display/DeviceByParam.tsx";
 export default () => {
     return <BrowserRouter>
         <Routes>
-            <Route path="/" element={<App />}>
-                <Route index element={<Home />}/>
-                <Route path="/device/:deviceName" element={<DeviceByParam />}/>
+            <Route path="/" element={<App/>}>
+                <Route index element={<Home/>}/>
+                <Route path="/device/:deviceName" element={<DeviceByParam/>}/>
                 <Route path="settings" element={<Settings/>}/>
             </Route>
         </Routes>
