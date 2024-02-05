@@ -1,6 +1,6 @@
 import React from 'react';
+
 import useEspHomePresenceHook from './EspHomePresenceHook.tsx'
-import {Link} from "react-router-dom";
 
 type DisplayMode = 'large' | 'compact'
 
@@ -29,8 +29,6 @@ export default ({displayMode, deviceName, hostIp}: {
     } = useEspHomePresenceHook(hostIp);
 
     return <div>
-        {displayMode==='large' && <Link to={`/presence/`}>Home</Link>}
-
         <ul>
             {Object.keys(espHomeState).sort().map((attribute) => {
                 const data = espHomeState[attribute];

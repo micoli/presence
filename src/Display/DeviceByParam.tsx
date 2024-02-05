@@ -3,14 +3,16 @@ import * as React from 'react';
 
 import {usePersistingPreferences} from "../Context/PreferencesContext.tsx";
 import Device from "./Presence/Device.tsx";
+import {useRoot} from '../Components/RootHook.tsx'
 
 export default () => {
     const params = useParams();
     const {preferences} = usePersistingPreferences();
+    const {root} = useRoot();
     const hosts = preferences.hosts
         .filter(({name}) => params.deviceName === name)
         .map(({name, hostIp}) => <>
-                <Link to={`/presence/`}>Home</Link>
+                <Link to={`${root}/`}>Home</Link>
                 <Device displayMode={'large'} deviceName={name} hostIp={hostIp}/>
             </>
         )

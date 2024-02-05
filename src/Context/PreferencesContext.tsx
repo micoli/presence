@@ -14,7 +14,7 @@ export const PERSISTING_PREFERENCES_ACTIONS = {
 export interface PersistingPreferencesContextData {
     darkMode: boolean
     openedNavbar: boolean
-    hosts: { hostIp: string, name: string }[]
+    hosts: { hostIp: string, name: string, icon: string }[]
 }
 
 const saveLocalStoragePreferences = ({

@@ -1,74 +1,76 @@
 import React from 'react';
 import classes from '../Styles/Navbar.module.css';
 
+import * as allIcons from "tabler-icons-react";
 import {Link, useLocation} from "react-router-dom";
-import { Tooltip, UnstyledButton, Stack, rem } from '@mantine/core';
-import {
-    IconHome2,
-    IconMushroom,
-    IconSettings,
-} from '@tabler/icons-react';
+import {Tooltip, UnstyledButton, Stack,} from '@mantine/core';
 
+import {useRoot} from './RootHook.tsx'
 import {usePersistingPreferences} from "../Context/PreferencesContext.tsx";
 
 interface NavbarLinkProps {
-    icon: typeof IconHome2|typeof IconMushroom;
+    icon: string;
     path: string;
     label: string;
     active?: boolean;
+
     onClick?(): void;
 }
 
-function NavbarLink({ icon: Icon, label, active, path, onClick }: NavbarLinkProps) {
+function NavbarLink(link: NavbarLinkProps) {
+    // @ts-ignore
+    const IconToBeUsed = allIcons[link.icon] ?? allIcons['Unlink'];
+
     return (
-        <Tooltip label={label} position="right" transitionProps={{ duration: 0 }}>
-            <UnstyledButton onClick={onClick} className={classes.link} data-active={active || undefined}>
-                <Link to={path}>
-                    <Icon style={{ width: rem(20), height: rem(20) }} stroke={1.5} />
-                    {label}
+        <Tooltip label={link.label} position="right" transitionProps={{duration: 0}}>
+            <UnstyledButton onClick={link.onClick} className={classes.link} data-active={link.active || undefined}>
+                <Link to={link.path}>
+                    <IconToBeUsed className={classes.linkIcon}/>
+                    {link.label}
                 </Link>
             </UnstyledButton>
         </Tooltip>
     );
 }
 
-export function Navbar({closeMenu}:{closeMenu:()=>void}) {
-    const { pathname } = useLocation()
+export function Navbar({closeMenu}: { closeMenu: () => void }) {
+    const {pathname} = useLocation()
+    const {root} = useRoot()
     const {preferences} = usePersistingPreferences();
 
-
-    const links = preferences.hosts.map(({name}) => (
+    const links = preferences.hosts.map(({name, icon}) => (
         <NavbarLink
             key={name}
-            path={`/device/${name}`}
-            icon={IconMushroom}
+            path={`${root}/device/${name}`}
+            icon={icon}
             label={name}
-            active={pathname===`/presence/device/${name}`}
+            active={pathname === `${root}/device/${name}`}
             onClick={closeMenu}
         />
     ));
 
     return (
-        <nav className={classes.navbar}>
-            <div className={classes.navbarMain}>
-                <Stack justify="center" gap={0}>
-                    <NavbarLink
-                        icon={IconHome2}
-                        label="Home"
-                        path={"/presence/"}
-                        active={pathname==='/'}
-                        onClick={closeMenu}
-                    />
-                    {links}
-                </Stack>
-            </div>
+        <nav>
+            <Stack justify="center" gap={0}>
+                <NavbarLink
+                    icon={"Home"}
+                    label="Home"
+                    path={`${root}/`}
+                    active={pathname === '/'}
+                    onClick={closeMenu}
+                />
+            </Stack>
+
+            <Stack justify="center" gap={0}>
+                {links}
+            </Stack>
 
             <Stack justify="center" gap={0}>
                 <NavbarLink
-                    icon={IconSettings}
+                    icon={"Settings"}
                     label="Settings"
-                    path={"/presence/settings"}
-                    active={pathname==='/presence/settings'}
+                    path={`${root}/settings`}
+                    active={pathname === `${root}/settings`}
                     onClick={closeMenu}
                 />
             </Stack>
